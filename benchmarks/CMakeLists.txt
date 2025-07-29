@@ -1,5 +1,6 @@
+find_package(NVBench REQUIRED)
+
 set(BENCHMARK_SOURCES
-  for.cu
   bc_bench.cu
   bfs_bench.cu
   color_bench.cu
@@ -13,6 +14,7 @@ set(BENCHMARK_SOURCES
   spmv_bench.cu
   sssp_bench.cu
   tc_bench.cu
+  for.cu
 )
 
 foreach(SOURCE IN LISTS BENCHMARK_SOURCES)

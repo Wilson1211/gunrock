@@ -8,7 +8,7 @@
 #!/bin/bash
 
 DATASET_DIR="../datasets"
-BIN_DIR="./bin"
+BIN_DIR="./build/bin"
 
 # Where to store output
 JSON_DIR="json"

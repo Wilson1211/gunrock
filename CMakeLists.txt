@@ -87,7 +87,7 @@ set(EXECUTABLE_OUTPUT_PATH
 
 ## Set the directory where the libraries will be stored
 set(LIBRARY_OUTPUT_PATH
-  ${PROJECT_BINARY_DIR}/lib
+  ${PROJECT_BINARY_DIR}/lib64
   CACHE PATH
   "Directory where all the libraries will be stored")
 
@@ -137,6 +137,8 @@ target_compile_definitions(essentials
 target_compile_features(essentials INTERFACE cxx_std_17)
 # set(CMAKE_CXX_EXTENSIONS OFF)
 
+# set(CUB_LIB_DIR "/home1/apps/nvidia/Linux_aarch64/24.9/math_libs/lib64")
+
 set(ESSENTIALS_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 ####################################################
@@ -150,6 +152,11 @@ target_include_directories(essentials
   INTERFACE ${NHLOMANN_JSON_INCLUDE_DIR}
   INTERFACE ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
   INTERFACE ${CMAKE_MODULES_INCLUDE_DIR}
+#  INTERFACE ${CUB_LIB_DIR}
+)
+
+target_link_directories(essentials
+  INTERFACE /home1/apps/nvidia/Linux_aarch64/24.9/math_libs/lib64
 )
 
 ####################################################

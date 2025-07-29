@@ -10,6 +10,8 @@ SUBDIRS_TOPC = soc-LiveJournal1 hollywood-2009 soc-orkut indochina-2004 road_usa
 
 SUBDIRS_STANDARD = soc-LiveJournal1 hollywood-2009 soc-orkut indochina-2004 road_usa
 
+SUBDIRS_UNMAKE = asia_osm geolocation germany_osm rgg_n_2_24_s0 road_central soc-sinaweibo soc-twitter-2010 uk-2002 uk-2005
+
 .PHONY: $(GRAPHS)
 
 #fetches all graphs, extracts and sets up files for tests
@@ -42,6 +44,11 @@ STANDARD: recurse_standard
 
 recurse_standard:
 	for subdir in $(SUBDIRS_STANDARD); do $(MAKE) -C $$subdir; done
+
+REST: recurse_unmake
+
+recurse_unmake:
+	for subdir in $(SUBDIRS_UNMAKE); do $(MAKE) -C $$subdir; done
 
 $(GRAPHS):
 	$(MAKE) -C $@
