@@ -116,7 +116,8 @@ void parse_source_string(std::string source_str,
     std::mt19937 engine(seed());
     for (int i = 0; i < n_runs; i++) {
       std::uniform_int_distribution<int> dist(0, n_vertices - 1);
-      source_vect->push_back(dist(engine));
+      // source_vect->push_back(dist(engine));
+      source_vect->push_back(0);
     }
   } else {
     std::stringstream ss(source_str);
