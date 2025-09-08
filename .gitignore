@@ -53,3 +53,5 @@ docs/sphinx/_extensions/
 docs/sphinx/gunrock.wiki/
 
 datasets/*
+
+*.ncu-rep
