@@ -243,6 +243,7 @@ struct enactor_t {
   float enact() {
     auto single_context = context->get_context(0);
     prepare_frontier(get_input_frontier(), *context);
+    // std::cout << "Threads per block: " << THREADS_PER_BLOCK << std::endl; 
     auto timer = single_context->timer();
     timer.begin();
     while (!is_converged(*context)) {

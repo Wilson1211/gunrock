@@ -1,0 +1,61 @@
+include/gunrock/framework/operators/advance/block_mapped.hxx:template <unsigned int THREADS_PER_BLOCK,
+include/gunrock/framework/operators/advance/block_mapped.hxx:__global__ void __launch_bounds__(THREADS_PER_BLOCK, 2)
+include/gunrock/framework/operators/advance/block_mapped.hxx:  // Specialize Block Scan for 1D block of THREADS_PER_BLOCK.
+include/gunrock/framework/operators/advance/block_mapped.hxx:  using block_scan_t = cub::BlockScan<edge_t, THREADS_PER_BLOCK>;
+include/gunrock/framework/operators/advance/block_mapped.hxx:  __shared__ vertex_t vertices[THREADS_PER_BLOCK];
+include/gunrock/framework/operators/advance/block_mapped.hxx:  __shared__ edge_t degrees[THREADS_PER_BLOCK];
+include/gunrock/framework/operators/advance/block_mapped.hxx:  __shared__ edge_t sedges[THREADS_PER_BLOCK];
+externals/cccl-src/docs/cub/tuning.rst:  // %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/docs/cub/tuning.rst:        static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/docs/cub/tuning.rst:    // %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/docs/cub/tuning.rst:was thus compiled with ``-DTUNE_ITEMS_PER_THREAD=19 -DTUNE_THREADS_PER_BLOCK=512``.
+externals/cccl-src/docs/cub/tuning.rst:        static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/select/flagged.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/select/flagged.cu:      cub::AgentSelectIfPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/select/unique.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/select/unique.cu:      cub::AgentSelectIfPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/select/if.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/select/if.cu:      cub::AgentSelectIfPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/adjacent_difference/subtract_left.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/adjacent_difference/subtract_left.cu:      cub::AgentAdjacentDifferencePolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/transform_reduce/sum.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/transform_reduce/sum.cu:    static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/reduce/min.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/reduce/arg_extrema.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/reduce/arg_extrema.cu:    static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/reduce/base.cuh:    static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/reduce/sum.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/reduce/deterministic.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/reduce/deterministic.cu:  constexpr static int BLOCK_THREADS                    = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/reduce/nondeterministic.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/reduce/nondeterministic.cu:    static constexpr int threads_per_block  = TUNE_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/segmented_reduce/base.cuh:    static constexpr int nominal_4b_large_threads_per_block = TUNE_L_NOMINAL_4B_THREADS_PER_BLOCK;
+externals/cccl-src/cub/benchmarks/bench/segmented_reduce/sum.cu:// %RANGE% TUNE_L_NOMINAL_4B_THREADS_PER_BLOCK ltpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/merge_sort/keys.cu:// %RANGE% TUNE_THREADS_PER_BLOCK_POW2 tpb 6:10:1
+externals/cccl-src/cub/benchmarks/bench/merge_sort/keys.cu:#  define TUNE_THREADS_PER_BLOCK (1 << TUNE_THREADS_PER_BLOCK_POW2)
+externals/cccl-src/cub/benchmarks/bench/merge_sort/keys.cu:      cub::AgentMergeSortPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/merge_sort/pairs.cu:// %RANGE% TUNE_THREADS_PER_BLOCK_POW2 tpb 6:10:1
+externals/cccl-src/cub/benchmarks/bench/merge_sort/pairs.cu:#  define TUNE_THREADS_PER_BLOCK (1 << TUNE_THREADS_PER_BLOCK_POW2)
+externals/cccl-src/cub/benchmarks/bench/merge_sort/pairs.cu:      cub::AgentMergeSortPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/radix_sort/keys.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/radix_sort/keys.cu:      TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/radix_sort/pairs.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/radix_sort/pairs.cu:      TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/partition/flagged.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/partition/flagged.cu:      cub::AgentSelectIfPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/partition/three_way.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/partition/three_way.cu:      cub::AgentThreeWayPartitionPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/partition/if.cu:// %RANGE% TUNE_THREADS_PER_BLOCK tpb 128:1024:32
+externals/cccl-src/cub/benchmarks/bench/partition/if.cu:      cub::AgentSelectIfPolicy<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/merge/keys.cu:// %RANGE% TUNE_THREADS_PER_BLOCK_POW2 tpb 6:10:1
+externals/cccl-src/cub/benchmarks/bench/merge/merge_common.cuh:#  define TUNE_THREADS_PER_BLOCK (1 << TUNE_THREADS_PER_BLOCK_POW2)
+externals/cccl-src/cub/benchmarks/bench/merge/merge_common.cuh:      cub::agent_policy_t<TUNE_THREADS_PER_BLOCK,
+externals/cccl-src/cub/benchmarks/bench/merge/pairs.cu:// %RANGE% TUNE_THREADS_PER_BLOCK_POW2 tpb 6:10:1
+externals/cccl-src/cub/test/catch2_test_block_run_length_decode.cu:  constexpr uint32_t THREADS_PER_BLOCK = BLOCK_DIM_X * BLOCK_DIM_Y * BLOCK_DIM_Z;
+externals/cccl-src/cub/test/catch2_test_block_run_length_decode.cu:  constexpr uint32_t RUNS_PER_BLOCK    = RUNS_PER_THREAD * THREADS_PER_BLOCK;
+externals/cccl-src/cub/test/catch2_test_block_run_length_decode.cu:    THREADS_PER_BLOCK,
+externals/cccl-src/cub/test/catch2_test_block_run_length_decode.cu:    <<<num_blocks, THREADS_PER_BLOCK, 0U>>>(d_unique_items, d_run_lengths, num_runs, d_decoded_sizes);
+externals/cccl-src/cub/test/catch2_test_block_run_length_decode.cu:  BlockRunLengthDecodeTestKernel<AgentTestBlockRunLengthDecodeT><<<num_blocks, THREADS_PER_BLOCK, 0U>>>(
+externals/cccl-src/cudax/test/stf/cuda-samples/4_CUDA_Libraries/conjugateGradientMultiDeviceCG/conjugateGradientMultiDeviceCG_custf.cu:#define THREADS_PER_BLOCK     64
+externals/cccl-src/cudax/test/stf/cuda-samples/4_CUDA_Libraries/conjugateGradientMultiDeviceCG/conjugateGradientMultiDeviceCG_custf.cu:  const int sMemSize = sizeof(double) * ((THREADS_PER_BLOCK / 32) + 1);
+externals/cccl-src/cudax/test/stf/cuda-samples/4_CUDA_Libraries/conjugateGradientMultiDeviceCG/conjugateGradientMultiDeviceCG_custf.cu:  auto spec = con(con(THREADS_PER_BLOCK, mem(sMemSize)));

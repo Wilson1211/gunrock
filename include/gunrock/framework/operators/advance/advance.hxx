@@ -116,6 +116,7 @@ void execute(graph_t& G,
     } else if (lb == load_balance_t::block_mapped) {
       block_mapped::execute<direction, input_type, output_type>(
           G, op, *input, *output, *context0);
+          // std::cout << "Threads per block: " << THREADS_PER_BLOCK << std::endl; 
     } else {
       error::throw_if_exception(cudaErrorUnknown,
                                 "Advance type not supported.");
