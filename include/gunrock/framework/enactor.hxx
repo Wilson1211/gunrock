@@ -241,6 +241,7 @@ struct enactor_t {
    * **the** time for performance measurements).
    */
   float enact() {
+
     auto single_context = context->get_context(0);
     prepare_frontier(get_input_frontier(), *context);
     // std::cout << "Threads per block: " << THREADS_PER_BLOCK << std::endl; 
@@ -252,6 +253,7 @@ struct enactor_t {
     }
     finalize(*context);
     auto runtime = timer.end();
+    std::cerr << "runtime: " << runtime << " iteration:" << iteration << std::endl; 
 #if (ESSENTIALS_COLLECT_METRICS)
     benchmark::____.search_depth = iteration;
     benchmark::____.total_runtime = runtime;
@@ -312,6 +314,7 @@ struct enactor_t {
    * @param context `gunrock::gcuda::multi_context_t`.
    */
   virtual void finalize(gcuda::multi_context_t& context) {}
+
 
 };  // struct enactor_t
 

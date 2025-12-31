@@ -18,7 +18,8 @@ void test_sssp(int num_arguments, char** argument_array) {
   using csr_t =
       format::csr_t<memory_space_t::device, vertex_t, edge_t, weight_t>;
   std::string DEFAULT_SSSP_ALGORITHMS =
-      "DAWN";  // Using 'Single Source Shortest Path' here will call the
+      "Single Source Shortest Path";
+      // "DAWN";  // Using 'Single Source Shortest Path' here will call the
                // original SSSP
   // --
   // IO

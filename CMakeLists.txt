@@ -225,7 +225,7 @@ target_compile_options(essentials INTERFACE
 ####################################################
 option(ESSENTIALS_COLLECT_METRICS
   "If on, builds Essentials with metrics collection enabled."
-  OFF)
+  ON)
 
 if(ESSENTIALS_COLLECT_METRICS)
   target_compile_definitions(essentials INTERFACE ESSENTIALS_COLLECT_METRICS=1)
@@ -266,11 +266,22 @@ endif(ESSENTIALS_BUILD_TESTS)
 ####################################################
 option(ESSENTIALS_BUILD_BENCHMARKS
   "If on, builds Essentials with NVBench benchmarking support."
-  OFF)
+  ON)
 
 if(ESSENTIALS_BUILD_BENCHMARKS)
   # ... see https://github.com/NVIDIA/nvbench/issues/66
   set(NVBench_ENABLE_NVML OFF)
-  include(${PROJECT_SOURCE_DIR}/cmake/FetchNVBench.cmake)
+
+  # first try to find NVBench in system
+  find_package(nvbench QUIET)
+  
+  # only download it when not found
+  if(NOT nvbench_FOUND)
+    message(STATUS "NVBench not found, fetching from source")
+    include(${PROJECT_SOURCE_DIR}/cmake/FetchNVBench.cmake)
+  else()
+    message(STATUS "Using found NVBench: ${nvbench_DIR}")
+  endif()
+
   add_subdirectory(benchmarks)
 endif(ESSENTIALS_BUILD_BENCHMARKS)

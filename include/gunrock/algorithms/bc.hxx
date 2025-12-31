@@ -248,7 +248,7 @@ float run(graph_t& G,
 
   // Disable internal-frontiers management:
   enactor_properties_t props;
-  props.number_of_frontier_buffers = 1000;  // XXX: hack!
+  props.number_of_frontier_buffers = 40000;  // XXX: hack!
   props.self_manage_frontiers = true;
 
   enactor_type enactor(&problem, context, props);

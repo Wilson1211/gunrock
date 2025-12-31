@@ -1,20 +1,20 @@
-find_package(NVBench REQUIRED)
+# find_package(NVBench REQUIRED)
 
 set(BENCHMARK_SOURCES
   bc_bench.cu
   bfs_bench.cu
-  color_bench.cu
-  geo_bench.cu
-  hits_bench.cu
-  kcore_bench.cu
-  mst_bench.cu
-  ppr_bench.cu
   pr_bench.cu
-  spgemm_bench.cu
-  spmv_bench.cu
   sssp_bench.cu
-  tc_bench.cu
-  for.cu
+  # color_bench.cu
+  # geo_bench.cu
+  # hits_bench.cu
+  # kcore_bench.cu
+  # mst_bench.cu
+  # ppr_bench.cu
+  # spgemm_bench.cu
+  # spmv_bench.cu
+  # tc_bench.cu
+  # for.cu
 )
 
 foreach(SOURCE IN LISTS BENCHMARK_SOURCES)

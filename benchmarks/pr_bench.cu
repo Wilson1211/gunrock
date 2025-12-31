@@ -102,12 +102,17 @@ int main(int argc, char** argv) {
 
   if (params.help) {
     // Print NVBench help.
-    const char* args[1] = {"-h"};
-    NVBENCH_MAIN_BODY(1, args);
+    static char help_arg[] = "-h";
+    char* help_args[1] = {help_arg};
+    NVBENCH_MAIN_BODY(1, help_args);
   } else {
     // Remove all gunrock parameters and pass to nvbench.
-    auto args = filtered_argv(argc, argv, "--market", "-m", filename);
+    auto help_args = filtered_argv(argc, argv, "--market", "-m", filename);
     NVBENCH_BENCH(pr_bench);
-    NVBENCH_MAIN_BODY(args.size(), args.data());
+    NVBENCH_MAIN_BODY(help_args.size(), help_args.data());
   }
+
+  cudaDeviceSynchronize();
+
+  _Exit(0);
 }

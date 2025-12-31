@@ -21,7 +21,8 @@ void test_bfs(int num_arguments, char** argument_array) {
       format::csr_t<memory_space_t::device, vertex_t, edge_t, weight_t>;
 
   std::string DEFAULT_BFS_ALGORITHMS =
-      "DAWN";  // Using 'Breadth First Search' here will call the original BFS
+      "Breadth First Search";
+      // "DAWN";  // Using 'Breadth First Search' here will call the original BFS
   // --
   // IO
 
@@ -69,15 +70,19 @@ void test_bfs(int num_arguments, char** argument_array) {
   auto benchmark_metrics = std::vector<benchmark::host_benchmark_t>(n_runs);
   for (int i = 0; i < n_runs; i++) {
     benchmark::INIT_BENCH();
-    if (DEFAULT_BFS_ALGORITHMS == "DAWN")
+    if (DEFAULT_BFS_ALGORITHMS == "DAWN"){
+      std::cerr << "here DAWN " << std::endl;
       run_times.push_back(gunrock::dawn_bfs::run(G, source_vect[i],
                                                  distances.data().get(),
                                                  predecessors.data().get()));
-    else
+    }
+    else {
+      std::cerr << "here run" << std::endl;
       run_times.push_back(gunrock::bfs::run(G, source_vect[i],
                                             distances.data().get(),
                                             predecessors.data().get()));
 
+    }
     benchmark::host_benchmark_t metrics = benchmark::EXTRACT();
     benchmark_metrics[i] = metrics;
 
@@ -86,16 +91,22 @@ void test_bfs(int num_arguments, char** argument_array) {
 
   // Export metrics
   if (params.export_metrics) {
-    if (DEFAULT_BFS_ALGORITHMS == "DAWN")
+    if (DEFAULT_BFS_ALGORITHMS == "DAWN") {
+
+      std::cerr << "use DAWN " << std::endl;
       gunrock::util::stats::export_performance_stats(
           benchmark_metrics, n_edges, n_vertices, run_times, "dawn_bfs",
           params.filename, "market", params.json_dir, params.json_file,
           source_vect, tag_vect, num_arguments, argument_array);
-    else
+    }
+    else {
+
+      std::cerr << "didn't use DAWN " << std::endl;
       gunrock::util::stats::export_performance_stats(
           benchmark_metrics, n_edges, n_vertices, run_times, "bfs",
           params.filename, "market", params.json_dir, params.json_file,
           source_vect, tag_vect, num_arguments, argument_array);
+    }
   }
 
   // Print info for last run
@@ -108,6 +119,8 @@ void test_bfs(int num_arguments, char** argument_array) {
   // CPU Run
 
   if (params.validate) {
+
+    std::cerr << " use cpu " << std::endl;
     thrust::host_vector<vertex_t> h_distances(n_vertices);
     thrust::host_vector<vertex_t> h_predecessors(n_vertices);
 

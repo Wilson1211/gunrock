@@ -141,6 +141,8 @@ struct enactor_t : gunrock::enactor_t<problem_t> {
     // Execute filter operator on the provided lambda
     operators::filter::execute<operators::filter_algorithm_t::bypass>(
         G, E, remove_completed_paths, context);
+    
+    // std::cout << "in sssp \n";
 
     /// @brief Execute uniquify operator to deduplicate the frontier
     /// @note Not required.

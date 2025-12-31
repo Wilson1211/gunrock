@@ -44,6 +44,7 @@ void test_bc(int num_arguments, char** argument_array) {
 
   // Parse sources
   std::vector<int> source_vect;
+  std::cout << "input string: " << params.source_string << std::endl;
   gunrock::io::cli::parse_source_string(params.source_string, &source_vect,
                                         n_vertices, params.num_runs);
   // Parse tags

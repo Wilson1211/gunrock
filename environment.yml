@@ -1,0 +1,13 @@
+name: gunrock
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - cmake>=3.18
+  - make
+  - gxx_linux-64  # GNU C++ 編譯器
+  - numpy
+  - matplotlib
+  - pandas
+  - jupyter  # 可選：用於分析結果

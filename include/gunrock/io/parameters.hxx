@@ -117,6 +117,7 @@ void parse_source_string(std::string source_str,
     for (int i = 0; i < n_runs; i++) {
       std::uniform_int_distribution<int> dist(0, n_vertices - 1);
       // source_vect->push_back(dist(engine));
+      // add this to make source node = 0 to be able to compare with pykokkos
       source_vect->push_back(0);
     }
   } else {

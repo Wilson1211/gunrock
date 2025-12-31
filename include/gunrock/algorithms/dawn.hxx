@@ -97,6 +97,22 @@ struct enactor_t : gunrock::enactor_t<problem_t> {
     // Execute advance operator on the provided lambda
     operators::advance::execute<operators::load_balance_t::block_mapped>(
         G, E, sovm, context);
+
+    // auto remove_invalids =
+    //     [] __host__ __device__(vertex_t const& vertex) -> bool {
+    //   // Returning true here means that we keep all the valid vertices.
+    //   // Internally, filter will automatically remove invalids and will never
+    //   // pass them to this lambda function.
+    //   return true;
+    // };
+
+    // operators::filter::execute<operators::filter_algorithm_t::compact>(
+    // G, E, remove_invalids, context);
+
+    // print_frontier_sample(E->get_input_frontier(), "After filter", 20);
+
+    // Execute uniquify operator to remove duplicates.
+    // operators::uniquify::execute(E, context);
   }
 };  // struct enactor_t
 
@@ -240,6 +256,8 @@ struct enactor_t : gunrock::enactor_t<problem_t> {
     // Execute advance operator on the provided lambda
     operators::advance::execute<operators::load_balance_t::block_mapped>(
         G, E, govm, context);
+      
+    // std::cout << "sssp dawn\n";
   }
   virtual bool is_converged(gcuda::multi_context_t& context) {
     auto G = this->get_problem()->get_graph();

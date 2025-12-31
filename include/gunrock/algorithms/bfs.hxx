@@ -70,6 +70,27 @@ struct enactor_t : gunrock::enactor_t<problem_t> {
   using weight_t = typename problem_t::weight_t;
   using frontier_t = typename enactor_t<problem_t>::frontier_t;
 
+
+
+  // 創建一個輔助函數來打印 frontier 內容
+  void print_frontier_sample(frontier_t* f, const char* label, int max_print = 10) {
+    auto size = f->get_number_of_elements();
+    if (size == 0) {
+      printf("%s: empty\n", label);
+      return;
+    }
+    
+    thrust::device_vector<vertex_t> d_data(f->data(), f->data() + size);
+    thrust::host_vector<vertex_t> h_data = d_data;
+    
+    printf("%s (%d elements): ", label, size);
+    for (int i = 0; i < std::min((int)size, max_print); i++) {
+      printf("%d ", h_data[i]);
+    }
+    if (size > max_print) printf("...");
+    printf("\n");
+  }
+
   void prepare_frontier(frontier_t* f,
                         gcuda::multi_context_t& context) override {
     auto P = this->get_problem();
@@ -129,6 +150,13 @@ struct enactor_t : gunrock::enactor_t<problem_t> {
     // @todo: Add CLI option to enable or disable this.
     // operators::filter::execute<operators::filter_algorithm_t::compact>(
     // G, E, remove_invalids, context);
+
+    // print_frontier_sample(E->get_input_frontier(), "After filter", 20);
+
+    // Execute uniquify operator to remove duplicates.
+    // operators::uniquify::execute(E, context);
+
+    // print_frontier_sample(E->get_input_frontier(), "After uniquify", 20);
   }
 
 };  // struct enactor_t
